@@ -10,7 +10,7 @@ namespace ClassLibrarySolver
         /// </summary>
         /// <param name="start"> начало диапазона </param>
         /// <param name="finish"> конец диапазона </param>
-        /// <param name="n"> количесвто делителей </param>
+        /// <param name="n"> количество делителей </param>
         /// <returns> список чисел с n делителями </returns>
         public static List<int> NumbersWithNDivisors(int start, int finish, int n)
         {
@@ -89,10 +89,6 @@ namespace ClassLibrarySolver
                 {
                     return i + (x / i);
                 }
-            }
-            if (x == SqrtN * SqrtN && x != 1)
-            {
-                return 2 * SqrtN;
             }
             return 0;
         }
