@@ -174,6 +174,7 @@
             this.splitContainer11.BackColor = System.Drawing.Color.WhiteSmoke;
             this.splitContainer11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.splitContainer11.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer11.IsSplitterFixed = true;
             this.splitContainer11.Location = new System.Drawing.Point(3, 3);
             this.splitContainer11.Name = "splitContainer11";
             // 
@@ -203,6 +204,7 @@
             // splitContainer12
             // 
             this.splitContainer12.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer12.IsSplitterFixed = true;
             this.splitContainer12.Location = new System.Drawing.Point(3, 19);
             this.splitContainer12.Name = "splitContainer12";
             this.splitContainer12.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -221,6 +223,7 @@
             // splitContainer13
             // 
             this.splitContainer13.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer13.IsSplitterFixed = true;
             this.splitContainer13.Location = new System.Drawing.Point(0, 0);
             this.splitContainer13.Name = "splitContainer13";
             this.splitContainer13.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -239,6 +242,7 @@
             // splitContainer16
             // 
             this.splitContainer16.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer16.IsSplitterFixed = true;
             this.splitContainer16.Location = new System.Drawing.Point(0, 0);
             this.splitContainer16.Name = "splitContainer16";
             this.splitContainer16.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -257,6 +261,7 @@
             // splitContainer17
             // 
             this.splitContainer17.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer17.IsSplitterFixed = true;
             this.splitContainer17.Location = new System.Drawing.Point(0, 0);
             this.splitContainer17.Name = "splitContainer17";
             // 
@@ -340,6 +345,7 @@
             // splitContainer14
             // 
             this.splitContainer14.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer14.IsSplitterFixed = true;
             this.splitContainer14.Location = new System.Drawing.Point(0, 0);
             this.splitContainer14.Name = "splitContainer14";
             this.splitContainer14.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -358,6 +364,7 @@
             // splitContainer20
             // 
             this.splitContainer20.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer20.IsSplitterFixed = true;
             this.splitContainer20.Location = new System.Drawing.Point(0, 0);
             this.splitContainer20.Name = "splitContainer20";
             this.splitContainer20.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -376,6 +383,7 @@
             // splitContainer21
             // 
             this.splitContainer21.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer21.IsSplitterFixed = true;
             this.splitContainer21.Location = new System.Drawing.Point(0, 0);
             this.splitContainer21.Name = "splitContainer21";
             // 
@@ -459,6 +467,7 @@
             // splitContainer22
             // 
             this.splitContainer22.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer22.IsSplitterFixed = true;
             this.splitContainer22.Location = new System.Drawing.Point(0, 0);
             this.splitContainer22.Name = "splitContainer22";
             this.splitContainer22.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -477,6 +486,7 @@
             // splitContainer23
             // 
             this.splitContainer23.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer23.IsSplitterFixed = true;
             this.splitContainer23.Location = new System.Drawing.Point(0, 0);
             this.splitContainer23.Name = "splitContainer23";
             // 
@@ -581,6 +591,7 @@
             // 
             this.splitContainer15.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.splitContainer15.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer15.IsSplitterFixed = true;
             this.splitContainer15.Location = new System.Drawing.Point(0, 0);
             this.splitContainer15.Name = "splitContainer15";
             this.splitContainer15.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -684,6 +695,7 @@
             // splitContainer18
             // 
             this.splitContainer18.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer18.IsSplitterFixed = true;
             this.splitContainer18.Location = new System.Drawing.Point(0, 0);
             this.splitContainer18.Name = "splitContainer18";
             // 
@@ -748,6 +760,7 @@
             // splitContainer19
             // 
             this.splitContainer19.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer19.IsSplitterFixed = true;
             this.splitContainer19.Location = new System.Drawing.Point(0, 0);
             this.splitContainer19.Name = "splitContainer19";
             // 
