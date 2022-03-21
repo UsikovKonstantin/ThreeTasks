@@ -180,7 +180,6 @@ namespace WinFormsApp
             catch (Exception)
             {
                 return false;
-                throw;
             }
         }
         #endregion
