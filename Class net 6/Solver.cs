@@ -12,10 +12,10 @@ namespace ClassLibrarySolver
         /// <param name="finish"> конец диапазона </param>
         /// <param name="n"> количество делителей </param>
         /// <returns> список чисел с n делителями </returns>
-        public static List<int> NumbersWithNDivisors(int start, int finish, int n)
+        public static List<long> NumbersWithNDivisors(long start, long finish, long n)
         {
-            List<int> result = new List<int>();
-            for (int x = start; x <= finish; x++)
+            List<long> result = new List<long>();
+            for (long x = start; x <= finish; x++)
             {
                 if (CountDivisors(x) == n)
                 {
@@ -30,16 +30,16 @@ namespace ClassLibrarySolver
         /// </summary>
         /// <param name="x"> число для посчёта его делителей </param>
         /// <returns> количество делителей числа </returns>
-        public static int CountDivisors(int x)
+        public static long CountDivisors(long x)
         {
-            int count = 0;
-            int SqrtN = (int)Math.Sqrt(x);
+            long count = 0;
+            long SqrtN = (long)Math.Sqrt(x);
             if (x == SqrtN * SqrtN && x != 1)
             {
                 count++;
                 SqrtN--;
             }
-            for (int i = 2; i <= SqrtN; i++)
+            for (long i = 2; i <= SqrtN; i++)
             {
                 if (x % i == 0)
                 {
