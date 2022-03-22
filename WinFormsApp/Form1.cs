@@ -10,6 +10,7 @@ namespace WinFormsApp
             T2_Change();
             T3_Change();
         }
+        List<(Thread thread, CancellationTokenSource cts)> threads = new();
         #region Task 1
         private void T1_txtbox_begin_TextChanged(object sender, EventArgs e)
         {
@@ -25,7 +26,7 @@ namespace WinFormsApp
         {
             T1_Change();
         }
-        List<(Thread thread,CancellationTokenSource cts)> threads = new();
+        
         void T1_Change()
         {
             for (int i = 0; i < threads.Count; i++)
@@ -289,7 +290,129 @@ namespace WinFormsApp
         }
         void T3_Change()
         {
-
+            for (int i = 0; i < threads.Count; i++)
+            {
+                if (threads[i].thread.ThreadState == ThreadState.Running)
+                {
+                    threads[i].cts.Cancel();
+                    threads.RemoveAt(i);
+                    break;
+                }
+            }
+            CancellationTokenSource cts = new();
+            T3_error.Clear();
+            T3_result.Clear();
+            T3_err_numbers.Visible = true;
+            T3_err_Csys.Visible = true;
+            T3_err_numreq.Visible = true;
+            bool numbers_checks = T3_Numbers_Checks();
+            bool Csys_checks = T3_Csys_Checks();
+            bool numreq_checks = T3_Numreq_Checks();
+            if (numbers_checks && Csys_checks && numreq_checks)
+            {
+                var thr1 = new Thread(T3_Calculate);
+                threads.Add((thr1, cts));
+                thr1.Start(cts.Token);
+            }
+        }
+        bool T3_Numbers_Checks()
+        {
+            if (!Text_exists(T3_txtbox_numbers))
+            {
+                T3_error.Text += $"Поле \"{T3_label_numbers.Text}\" должно быть заполнено {Environment.NewLine}";
+                return false;
+            }
+            string[] temp = T3_txtbox_numbers.Text.Split(',');
+            for (long i = 0;i<temp.Length;i++)
+            {
+                try
+                {
+                    long.Parse(temp[i]);
+                }
+                catch (Exception)
+                {
+                    T3_error.Text += $"Поле \"{T3_label_numbers.Text}\" на позиции {i} не может быть переведено в целое число {Environment.NewLine}";
+                    return false;
+                }
+            }
+            for (long i = 0; i < temp.Length; i++)
+            {
+                if (long.Parse(temp[i]) < 0)
+                {
+                    T3_error.Text += $"Поле \"{T3_label_numbers.Text}\" на позиции {i} должно быть больше или равно 0 {Environment.NewLine}";
+                    return false;
+                }
+            }
+            T3_err_numbers.Visible = false;
+            return true;
+        }
+        bool T3_Csys_Checks()
+        {
+            if (!Text_exists(T3_txtbox_Csys))
+            {
+                T3_error.Text += $"Поле \"{T3_label_Csys.Text}\" должно быть заполнено {Environment.NewLine}";
+                return false;
+            }
+            if (!Can_be_Parsed(T3_txtbox_Csys))
+            {
+                T3_error.Text += $"Значение в поле \"{T3_label_Csys.Text}\" не может быть переведено в целое число {Environment.NewLine}";
+                return false;
+            }
+            if (long.Parse(T3_txtbox_Csys.Text) < 2)
+            {
+                T3_error.Text += $"Значение в поле \"{T3_label_Csys.Text}\" должно быть больше или равно 2 {Environment.NewLine}";
+                return false;
+            }
+            T3_err_Csys.Visible = false;
+            return true;
+        }
+        bool T3_Numreq_Checks()
+        {
+            if (!Text_exists(T3_txtbox_numreq))
+            {
+                T3_error.Text += $"Поле \"{T3_label_numreq.Text}\" должно быть заполнено {Environment.NewLine}";
+                return false;
+            }
+            if (!Can_be_Parsed(T3_txtbox_numreq))
+            {
+                T3_error.Text += $"Значение в поле \"{T3_label_numreq.Text}\" не может быть переведено в целое число {Environment.NewLine}";
+                return false;
+            }
+            if (long.Parse(T3_txtbox_numreq.Text) < 0)
+            {
+                T3_error.Text += $"Значение в поле \"{T3_label_numreq.Text}\" должно быть больше или равно 0 {Environment.NewLine}";
+                return false;
+            }
+            T3_err_numreq.Visible = false;
+            return true;
+        }
+        void T3_Calculate(object obj)
+        {
+            CancellationToken ct = (CancellationToken)obj;
+            Invoke(new Action(() => T3_result.Text = "Происходит вычисление..."));
+            string[] temp = T3_txtbox_numbers.Text.Split(',');
+            long[] numbers = new long[temp.Length];
+            for (int i = 0; i < temp.Length; i++)
+            {
+                numbers[i] = long.Parse(temp[i]);
+            }
+            long Csys = long.Parse(T3_txtbox_Csys.Text), numreq = long.Parse(T3_txtbox_numreq.Text);
+            var range = Solver.NumbersWithDigitNInBaseP(numbers, Csys, numreq);
+            if (ct.IsCancellationRequested)
+            {
+                Invoke(new Action(() => T3_result.Text = "Вычисление отменено"));
+                return;
+            }
+            string output = "";
+            if (range.Count == 0)
+            {
+                Invoke(new Action(() => T3_result.Text = "Не найдено"));
+            }
+            for (int i = 0; i < range.Count; i++)
+            {
+                output += $"{i} - {range[i]} {Environment.NewLine}";
+            }
+            Invoke(new Action(() => T3_result.Text = output));
         }
         #endregion
 

@@ -106,8 +106,6 @@
             this.splitContainer29 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel17 = new System.Windows.Forms.TableLayoutPanel();
             this.T3_label_numbers = new System.Windows.Forms.Label();
-            this.tableLayoutPanel18 = new System.Windows.Forms.TableLayoutPanel();
-            this.T3_txtbox_numbers = new System.Windows.Forms.TextBox();
             this.T3_err_numbers = new System.Windows.Forms.TextBox();
             this.splitContainer30 = new System.Windows.Forms.SplitContainer();
             this.splitContainer31 = new System.Windows.Forms.SplitContainer();
@@ -141,6 +139,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.textBox7 = new System.Windows.Forms.TextBox();
+            this.T3_txtbox_numbers = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer11)).BeginInit();
@@ -275,7 +274,6 @@
             this.splitContainer29.Panel2.SuspendLayout();
             this.splitContainer29.SuspendLayout();
             this.tableLayoutPanel17.SuspendLayout();
-            this.tableLayoutPanel18.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer30)).BeginInit();
             this.splitContainer30.Panel1.SuspendLayout();
             this.splitContainer30.Panel2.SuspendLayout();
@@ -1430,7 +1428,7 @@
             // 
             // splitContainer29.Panel2
             // 
-            this.splitContainer29.Panel2.Controls.Add(this.tableLayoutPanel18);
+            this.splitContainer29.Panel2.Controls.Add(this.T3_txtbox_numbers);
             this.splitContainer29.Size = new System.Drawing.Size(790, 73);
             this.splitContainer29.SplitterDistance = 205;
             this.splitContainer29.TabIndex = 0;
@@ -1461,31 +1459,6 @@
             this.T3_label_numbers.Size = new System.Drawing.Size(199, 26);
             this.T3_label_numbers.TabIndex = 0;
             this.T3_label_numbers.Text = "Числа";
-            // 
-            // tableLayoutPanel18
-            // 
-            this.tableLayoutPanel18.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tableLayoutPanel18.ColumnCount = 1;
-            this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel18.Controls.Add(this.T3_txtbox_numbers, 0, 1);
-            this.tableLayoutPanel18.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel18.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel18.Name = "tableLayoutPanel18";
-            this.tableLayoutPanel18.RowCount = 3;
-            this.tableLayoutPanel18.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel18.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel18.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel18.Size = new System.Drawing.Size(581, 73);
-            this.tableLayoutPanel18.TabIndex = 0;
-            // 
-            // T3_txtbox_numbers
-            // 
-            this.T3_txtbox_numbers.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.T3_txtbox_numbers.Location = new System.Drawing.Point(3, 29);
-            this.T3_txtbox_numbers.Name = "T3_txtbox_numbers";
-            this.T3_txtbox_numbers.Size = new System.Drawing.Size(575, 23);
-            this.T3_txtbox_numbers.TabIndex = 0;
-            this.T3_txtbox_numbers.TextChanged += new System.EventHandler(this.T3_txtbox_numbers_TextChanged);
             // 
             // T3_err_numbers
             // 
@@ -1940,6 +1913,16 @@
             this.textBox7.Size = new System.Drawing.Size(194, 23);
             this.textBox7.TabIndex = 0;
             // 
+            // T3_txtbox_numbers
+            // 
+            this.T3_txtbox_numbers.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.T3_txtbox_numbers.Location = new System.Drawing.Point(0, 0);
+            this.T3_txtbox_numbers.Multiline = true;
+            this.T3_txtbox_numbers.Name = "T3_txtbox_numbers";
+            this.T3_txtbox_numbers.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.T3_txtbox_numbers.Size = new System.Drawing.Size(581, 73);
+            this.T3_txtbox_numbers.TabIndex = 0;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -2111,12 +2094,11 @@
             this.splitContainer29.Panel1.ResumeLayout(false);
             this.splitContainer29.Panel1.PerformLayout();
             this.splitContainer29.Panel2.ResumeLayout(false);
+            this.splitContainer29.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer29)).EndInit();
             this.splitContainer29.ResumeLayout(false);
             this.tableLayoutPanel17.ResumeLayout(false);
             this.tableLayoutPanel17.PerformLayout();
-            this.tableLayoutPanel18.ResumeLayout(false);
-            this.tableLayoutPanel18.PerformLayout();
             this.splitContainer30.Panel1.ResumeLayout(false);
             this.splitContainer30.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer30)).EndInit();
@@ -2265,8 +2247,6 @@
         private SplitContainer splitContainer29;
         private TableLayoutPanel tableLayoutPanel17;
         private Label T3_label_numbers;
-        private TableLayoutPanel tableLayoutPanel18;
-        private TextBox T3_txtbox_numbers;
         private TextBox T3_err_numbers;
         private SplitContainer splitContainer30;
         private SplitContainer splitContainer31;
@@ -2290,5 +2270,6 @@
         private TextBox textBox28;
         private GroupBox groupBox12;
         private TextBox T3_error;
+        private TextBox T3_txtbox_numbers;
     }
 }

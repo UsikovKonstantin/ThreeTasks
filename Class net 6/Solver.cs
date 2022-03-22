@@ -141,12 +141,12 @@
         /// <param name="P"> необходимое основание </param>
         /// <param name="n"> искомая цифра </param>
         /// <returns> список чисел </returns>
-        public static List<int> NumbersWithDigitNInBaseP(int[] numbers, int P, int n)
+        public static List<long> NumbersWithDigitNInBaseP(long[] numbers, long P, long n)
         {
-            List<int> result = new List<int>();
-            foreach (int number in numbers)
+            List<long> result = new List<long>();
+            foreach (long number in numbers)
             {
-                int x = number;
+                long x = number;
                 while (x > 0)
                 {
                     if (x % P == n)
