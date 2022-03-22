@@ -38,7 +38,8 @@ namespace WinFormsApp
             bool div_checks = T1_Dividers_Checks();
             if (begin_checks && end_checks && div_checks)
             {
-                T1_Calculate();
+                var thr1 = new Thread(T1_Calculate);
+                thr1.Start();
             }
         }
         bool T1_Begin_Checks()
@@ -103,16 +104,19 @@ namespace WinFormsApp
         }
         void T1_Calculate()
         {
+            Invoke(new Action(() => T1_result.Text = "Происходит вычисление..."));
             long beg = long.Parse(T1_txtbox_begin.Text), end = long.Parse(T1_txtbox_end.Text), div = long.Parse(T1_txtbox_numdiv.Text);
             if (beg > end)
             {
                 (end, beg) = (beg, end);
             }
             var range = Solver.NumbersWithNDivisors(beg, end, div);
+            string output = "";
             for (int i = 0; i < range.Count; i++)
             {
-                T1_result.Text += $"{i} - {range[i]} {Environment.NewLine}";
+                output += $"{i} - {range[i]} {Environment.NewLine}";
             }
+            Invoke(new Action(() => T1_result.Text = output));
         }
         #endregion
 
@@ -174,7 +178,10 @@ namespace WinFormsApp
         {
             try
             {
-                long.Parse(txtbox.Text);
+                checked
+                {
+                    long.Parse(txtbox.Text);
+                }
                 return true;
             }
             catch (Exception)
