@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.splitContainer11 = new System.Windows.Forms.SplitContainer();
@@ -798,6 +799,9 @@
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(302, 230);
             this.textBox1.TabIndex = 0;
+            this.textBox1.Text = "Данная программа предназначена для поиска чисел имеющих определенное количество н" +
+    "ебазовых делителей в указанном промежутке.\r\n\r\nГраницы должны быть больше 2.\r\n\r\nК" +
+    "оличество делителей неотрицательно.\r\n";
             // 
             // groupBox9
             // 
@@ -1291,6 +1295,7 @@
             this.textBox19.ReadOnly = true;
             this.textBox19.Size = new System.Drawing.Size(302, 230);
             this.textBox19.TabIndex = 0;
+            this.textBox19.Text = resources.GetString("textBox19.Text");
             // 
             // groupBox4
             // 
@@ -1770,6 +1775,7 @@
             this.textBox28.ReadOnly = true;
             this.textBox28.Size = new System.Drawing.Size(302, 230);
             this.textBox28.TabIndex = 0;
+            this.textBox28.Text = resources.GetString("textBox28.Text");
             // 
             // groupBox12
             // 

@@ -123,6 +123,15 @@
   <metadata name="splitContainer24.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="textBox19.Text" xml:space="preserve">
+    <value>Данная программа предназначена для поиска чисел сумма максимального и минимального делителя которых имеет указанную цифру на конце.
+
+Начало промежутка больше 2.
+
+Количество чисел для нахождения от 1 до 1000000.
+
+Цифра в окончании суммы от 0 до 9.</value>
+  </data>
   <metadata name="splitContainer25.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -156,6 +165,19 @@
   <metadata name="splitContainer35.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="textBox28.Text" xml:space="preserve">
+    <value>Данная программа предназначена для поиска чисел которые в указанной системе счисления содержат указанную цифру.
+
+Числа неотрицательны.
+
+Между числами ставится запятая, без пробелов.
+
+Система счисления не меньше 2.
+
+Цифра не меньше 0.
+
+</value>
+  </data>
   <metadata name="splitContainer18.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>

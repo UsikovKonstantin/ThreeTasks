@@ -246,6 +246,11 @@ namespace WinFormsApp
                 T2_error.Text += $"Значение в поле \"{T2_label_sum.Text}\" должно быть больше или равно 0 {Environment.NewLine}";
                 return false;
             }
+            if (long.Parse(T2_txtbox_sum.Text) > 9)
+            {
+                T2_error.Text += $"Значение в поле \"{T2_label_sum.Text}\" должно быть меньше или равно 9 {Environment.NewLine}";
+                return false;
+            }
             T2_err_sum.Visible = false;
             return true;
         }
