@@ -25,18 +25,19 @@ namespace WinFormsApp
         {
             T1_Change();
         }
-        CancellationTokenSource cts = new();
-        List<Thread> threads = new();
+        List<(Thread thread,CancellationTokenSource cts)> threads = new();
         void T1_Change()
         {
-            foreach (var t in threads)
+            for (int i = 0; i < threads.Count; i++)
             {
-                if (t.ThreadState == ThreadState.Running)
+                if (threads[i].thread.ThreadState == ThreadState.Running)
                 {
-                    cts.Cancel();
+                    threads[i].cts.Cancel();
+                    threads.RemoveAt(i);
+                    break;
                 }
             }
-            CancellationToken token = cts.Token;
+            CancellationTokenSource cts = new();
             T1_error.Clear();
             T1_result.Clear();
             T1_err_begin.Visible = true;
@@ -48,8 +49,8 @@ namespace WinFormsApp
             if (begin_checks && end_checks && div_checks)
             {
                 var thr1 = new Thread(T1_Calculate);
-                threads.Add(thr1);
-                thr1.Start(token);
+                threads.Add((thr1,cts));
+                thr1.Start(cts.Token);
             }
         }
         bool T1_Begin_Checks()
