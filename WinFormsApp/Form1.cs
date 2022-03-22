@@ -129,6 +129,10 @@ namespace WinFormsApp
                 return;
             }
             string output = "";
+            if (range.Count == 0)
+            {
+                Invoke(new Action(() => T1_result.Text = "Не найдено"));
+            }
             for (int i = 0; i < range.Count; i++)
             {
                 output += $"{i} - {range[i]} {Environment.NewLine}";
@@ -154,7 +158,117 @@ namespace WinFormsApp
         }
         void T2_Change()
         {
-
+            for (int i = 0; i < threads.Count; i++)
+            {
+                if (threads[i].thread.ThreadState == ThreadState.Running)
+                {
+                    threads[i].cts.Cancel();
+                    threads.RemoveAt(i);
+                    break;
+                }
+            }
+            CancellationTokenSource cts = new();
+            T2_error.Clear();
+            T2_result.Clear();
+            T2_err_begin.Visible = true;
+            T2_err_count.Visible = true;
+            T2_err_sum.Visible = true;
+            bool begin_checks = T2_Begin_Checks();
+            bool count_checks = T2_Count_Checks();
+            bool sum_checks = T2_Sum_Checks();
+            if (begin_checks && count_checks && sum_checks)
+            {
+                var thr1 = new Thread(T2_Calculate);
+                threads.Add((thr1, cts));
+                thr1.Start(cts.Token);
+            }
+        }
+        bool T2_Begin_Checks()
+        {
+            if (!Text_exists(T2_txtbox_begin))
+            {
+                T2_error.Text += $"Поле \"{T2_label_begin.Text}\" должно быть заполнено {Environment.NewLine}";
+                return false;
+            }
+            if (!Can_be_Parsed(T2_txtbox_begin))
+            {
+                T2_error.Text += $"Значение в поле \"{T2_label_begin.Text}\" не может быть переведено в целое число {Environment.NewLine}";
+                return false;
+            }
+            if (long.Parse(T2_txtbox_begin.Text) <= 2)
+            {
+                T2_error.Text += $"Значение в поле \"{T2_label_begin.Text}\" должно быть больше 2 {Environment.NewLine}";
+                return false;
+            }
+            T2_err_begin.Visible = false;
+            return true;
+        }
+        bool T2_Count_Checks()
+        {
+            if (!Text_exists(T2_txtbox_count))
+            {
+                T2_error.Text += $"Поле \"{T2_label_count.Text}\" должно быть заполнено {Environment.NewLine}";
+                return false;
+            }
+            if (!Can_be_Parsed(T2_txtbox_count))
+            {
+                T2_error.Text += $"Значение в поле \"{T2_label_count.Text}\" не может быть переведено в целое число {Environment.NewLine}";
+                return false;
+            }
+            if (long.Parse(T2_txtbox_count.Text) < 1)
+            {
+                T2_error.Text += $"Значение в поле \"{T2_label_count.Text}\" должно быть больше 0 {Environment.NewLine}";
+                return false;
+            }
+            if (long.Parse(T2_txtbox_count.Text) > 1000000)
+            {
+                T2_error.Text += $"Значение в поле \"{T2_label_count.Text}\" должно быть меньше или равно 1000000 {Environment.NewLine}";
+                return false;
+            }
+            T2_err_count.Visible = false;
+            return true;
+        }
+        bool T2_Sum_Checks()
+        {
+            if (!Text_exists(T2_txtbox_sum))
+            {
+                T2_error.Text += $"Поле \"{T2_label_sum.Text}\" должно быть заполнено {Environment.NewLine}";
+                return false;
+            }
+            if (!Can_be_Parsed(T2_txtbox_sum))
+            {
+                T2_error.Text += $"Значение в поле \"{T2_label_sum.Text}\" не может быть переведено в целое число {Environment.NewLine}";
+                return false;
+            }
+            if (long.Parse(T2_txtbox_sum.Text) < 0)
+            {
+                T2_error.Text += $"Значение в поле \"{T2_label_sum.Text}\" должно быть больше или равно 0 {Environment.NewLine}";
+                return false;
+            }
+            T2_err_sum.Visible = false;
+            return true;
+        }
+        void T2_Calculate(object obj)
+        {
+            CancellationToken ct = (CancellationToken)obj;
+            Invoke(new Action(() => T2_result.Text = "Происходит вычисление..."));
+            long beg = long.Parse(T2_txtbox_begin.Text), count = long.Parse(T2_txtbox_count.Text), sum = long.Parse(T2_txtbox_sum.Text);
+            var range = Solver.NumbersWithSumOfMinMaxDivisorsEqualsN(beg, count, sum, ct);
+            if (ct.IsCancellationRequested)
+            {
+                Invoke(new Action(() => T2_result.Text = "Вычисление отменено"));
+                return;
+            }
+            string output = "";
+            if (range.Length == 0)
+            {
+                Invoke(new Action(() => T2_result.Text = "Не найдено"));
+            }
+            for (int i = 0; i < range.Length; i++)
+            {
+                output += $"{i} - {range[i]} {Environment.NewLine}";
+            }
+            Invoke(new Action(() => T2_result.Text = output));
         }
         #endregion
 

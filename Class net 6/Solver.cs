@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace ClassLibrarySolver
+﻿namespace ClassLibrarySolver
 {
     public static class Solver
     {
+        #region Task 1
         /// <summary>
         /// Возвращает список чисел, находящихся в диапазоне [start, finish], с n делителями (не считая базовых).
         /// </summary>
@@ -12,7 +10,7 @@ namespace ClassLibrarySolver
         /// <param name="finish"> конец диапазона </param>
         /// <param name="n"> количество делителей </param>
         /// <returns> список чисел с n делителями </returns>
-        public static List<long> NumbersWithNDivisors(long start, long finish, long n,object obj)
+        public static List<long> NumbersWithNDivisors(long start, long finish, long n, object obj)
         {
             CancellationToken ct = (CancellationToken)obj;
             List<long> result = new List<long>();
@@ -63,9 +61,9 @@ namespace ClassLibrarySolver
             }
             return count;
         }
+        #endregion
 
-
-
+        #region Task 2
         /// <summary>
         /// Возвращает массив из count чисел, больших start, сумма минимального и максимального делителей которых заканчивается на n
         /// </summary>
@@ -73,19 +71,44 @@ namespace ClassLibrarySolver
         /// <param name="count"> количество чисел </param>
         /// <param name="n"> на что заканчивается сумма делителей </param>
         /// <returns> массив из count найденных чисел </returns>
-        public static int[] NumbersWithSumOfMinMaxDivisorsEqualsN(int start, int count, int n)
+        public static long[] NumbersWithSumOfMinMaxDivisorsEqualsN(long start, long count, long n, object obj)
         {
-            int[] result = new int[count];
-            int ind = 0;
-            int x = start + 1;
-            while (ind < count)
+            CancellationToken ct = (CancellationToken)obj;
+            long[] result = new long[0];
+
+            try
             {
-                if (SumOfMinMaxDivisors(x) % 10 == n)
+                result = new long[count];
+            }
+            catch (Exception)
+            {
+                return NumbersWithSumOfMinMaxDivisorsEqualsN(start, (long)(count * 0.9), n, obj);
+            }
+            //long[] result = new long[count];
+            long ind = 0;
+            try
+            {
+                checked
                 {
-                    result[ind] = x;
-                    ind++;
+                    long x = start + 1;
+                    while (ind < count)
+                    {
+                        if (ct.IsCancellationRequested)
+                        {
+                            return null;
+                        }
+                        if (SumOfMinMaxDivisors(x) % 10 == n)
+                        {
+                            result[ind] = x;
+                            ind++;
+                        }
+                        x++;
+                    }
                 }
-                x++;
+            }
+            catch (Exception)
+            {
+                return result;
             }
             return result;
         }
@@ -95,10 +118,10 @@ namespace ClassLibrarySolver
         /// </summary>
         /// <param name="x"> число </param>
         /// <returns> сумма минимального и максимального делителей </returns>
-        public static int SumOfMinMaxDivisors(int x)
+        public static long SumOfMinMaxDivisors(long x)
         {
-            int SqrtN = (int)Math.Sqrt(x);
-            for (int i = 2; i <= SqrtN; i++)
+            long SqrtN = (long)Math.Sqrt(x);
+            for (long i = 2; i <= SqrtN; i++)
             {
                 if (x % i == 0)
                 {
@@ -108,8 +131,9 @@ namespace ClassLibrarySolver
             return 0;
         }
 
+        #endregion
 
-
+        #region Task 3
         /// <summary>
         /// Возвращает список чисел, составленный из заданных чисел numbers, запись которых в системе P имеет цифру n
         /// </summary>
@@ -135,5 +159,6 @@ namespace ClassLibrarySolver
             }
             return result;
         }
+        #endregion
     }
 }
