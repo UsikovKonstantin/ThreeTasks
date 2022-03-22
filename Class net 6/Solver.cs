@@ -17,7 +17,7 @@ namespace ClassLibrarySolver
             List<long> result = new List<long>();
             for (long x = start; x <= finish; x++)
             {
-                if (CountDivisors(x) == n)
+                if (CountDivisors(x, n) == n)
                 {
                     result.Add(x);
                 }
@@ -26,17 +26,23 @@ namespace ClassLibrarySolver
         }
 
         /// <summary>
-        /// Возвращает количество делителей числа (не считая базовых)
+        /// Возвращает количество делителей числа (не считая базовых).
+        /// Если количество делителей в какой-то момент станет больше n, функция завершит выполнение.
         /// </summary>
         /// <param name="x"> число для посчёта его делителей </param>
+        /// <param name="n"> ограничитель количесва делителей </param>
         /// <returns> количество делителей числа </returns>
-        public static long CountDivisors(long x)
+        public static long CountDivisors(long x, long n)
         {
             long count = 0;
             long SqrtN = (long)Math.Sqrt(x);
             if (x == SqrtN * SqrtN && x != 1)
             {
                 count++;
+                if (count > n)
+                {
+                    return count;
+                }
                 SqrtN--;
             }
             for (long i = 2; i <= SqrtN; i++)
@@ -44,6 +50,10 @@ namespace ClassLibrarySolver
                 if (x % i == 0)
                 {
                     count += 2;
+                    if (count > n)
+                    {
+                        return count;
+                    }
                 }
             }
             return count;
