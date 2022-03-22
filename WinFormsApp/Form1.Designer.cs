@@ -106,6 +106,7 @@
             this.splitContainer29 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel17 = new System.Windows.Forms.TableLayoutPanel();
             this.T3_label_numbers = new System.Windows.Forms.Label();
+            this.T3_txtbox_numbers = new System.Windows.Forms.TextBox();
             this.T3_err_numbers = new System.Windows.Forms.TextBox();
             this.splitContainer30 = new System.Windows.Forms.SplitContainer();
             this.splitContainer31 = new System.Windows.Forms.SplitContainer();
@@ -139,7 +140,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.textBox7 = new System.Windows.Forms.TextBox();
-            this.T3_txtbox_numbers = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer11)).BeginInit();
@@ -1460,6 +1460,17 @@
             this.T3_label_numbers.TabIndex = 0;
             this.T3_label_numbers.Text = "Числа";
             // 
+            // T3_txtbox_numbers
+            // 
+            this.T3_txtbox_numbers.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.T3_txtbox_numbers.Location = new System.Drawing.Point(0, 0);
+            this.T3_txtbox_numbers.Multiline = true;
+            this.T3_txtbox_numbers.Name = "T3_txtbox_numbers";
+            this.T3_txtbox_numbers.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.T3_txtbox_numbers.Size = new System.Drawing.Size(581, 73);
+            this.T3_txtbox_numbers.TabIndex = 0;
+            this.T3_txtbox_numbers.TextChanged += new System.EventHandler(this.T3_txtbox_numbers_TextChanged);
+            // 
             // T3_err_numbers
             // 
             this.T3_err_numbers.BackColor = System.Drawing.Color.Red;
@@ -1912,16 +1923,6 @@
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(194, 23);
             this.textBox7.TabIndex = 0;
-            // 
-            // T3_txtbox_numbers
-            // 
-            this.T3_txtbox_numbers.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.T3_txtbox_numbers.Location = new System.Drawing.Point(0, 0);
-            this.T3_txtbox_numbers.Multiline = true;
-            this.T3_txtbox_numbers.Name = "T3_txtbox_numbers";
-            this.T3_txtbox_numbers.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.T3_txtbox_numbers.Size = new System.Drawing.Size(581, 73);
-            this.T3_txtbox_numbers.TabIndex = 0;
             // 
             // Form1
             // 
