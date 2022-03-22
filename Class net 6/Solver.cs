@@ -12,11 +12,16 @@ namespace ClassLibrarySolver
         /// <param name="finish"> конец диапазона </param>
         /// <param name="n"> количество делителей </param>
         /// <returns> список чисел с n делителями </returns>
-        public static List<long> NumbersWithNDivisors(long start, long finish, long n)
+        public static List<long> NumbersWithNDivisors(long start, long finish, long n,object obj)
         {
+            CancellationToken ct = (CancellationToken)obj;
             List<long> result = new List<long>();
             for (long x = start; x <= finish; x++)
             {
+                if (ct.IsCancellationRequested)
+                {
+                    return null;
+                }
                 if (CountDivisors(x, n) == n)
                 {
                     result.Add(x);

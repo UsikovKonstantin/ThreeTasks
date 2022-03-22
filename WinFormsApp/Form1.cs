@@ -25,9 +25,18 @@ namespace WinFormsApp
         {
             T1_Change();
         }
-
+        CancellationTokenSource cts = new();
+        List<Thread> threads = new();
         void T1_Change()
         {
+            foreach (var t in threads)
+            {
+                if (t.ThreadState == ThreadState.Running)
+                {
+                    cts.Cancel();
+                }
+            }
+            CancellationToken token = cts.Token;
             T1_error.Clear();
             T1_result.Clear();
             T1_err_begin.Visible = true;
@@ -39,7 +48,8 @@ namespace WinFormsApp
             if (begin_checks && end_checks && div_checks)
             {
                 var thr1 = new Thread(T1_Calculate);
-                thr1.Start();
+                threads.Add(thr1);
+                thr1.Start(token);
             }
         }
         bool T1_Begin_Checks()
@@ -102,15 +112,21 @@ namespace WinFormsApp
             T1_err_numdiv.Visible = false;
             return true;
         }
-        void T1_Calculate()
+        void T1_Calculate(object obj)
         {
+            CancellationToken ct = (CancellationToken)obj;
             Invoke(new Action(() => T1_result.Text = "Происходит вычисление..."));
             long beg = long.Parse(T1_txtbox_begin.Text), end = long.Parse(T1_txtbox_end.Text), div = long.Parse(T1_txtbox_numdiv.Text);
             if (beg > end)
             {
                 (end, beg) = (beg, end);
             }
-            var range = Solver.NumbersWithNDivisors(beg, end, div);
+            var range = Solver.NumbersWithNDivisors(beg, end, div,ct);
+            if (ct.IsCancellationRequested)
+            {
+                Invoke(new Action(() => T1_result.Text = "Вычисление отменено"));
+                return;
+            }
             string output = "";
             for (int i = 0; i < range.Count; i++)
             {
