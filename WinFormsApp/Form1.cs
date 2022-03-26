@@ -130,15 +130,15 @@ namespace WinFormsApp
                 return;
             }
             string output = "";
-            if (range.Count == 0)
-            {
-                Invoke(new Action(() => T1_result.Text = "Не найдено"));
-            }
             for (int i = 0; i < range.Count; i++)
             {
                 output += $"{i} - {range[i]} {Environment.NewLine}";
             }
             Invoke(new Action(() => T1_result.Text = output));
+            if (range.Count == 0)
+            {
+                Invoke(new Action(() => T1_result.Text = "Не найдено"));
+            }
         }
         #endregion
 
@@ -266,15 +266,15 @@ namespace WinFormsApp
                 return;
             }
             string output = "";
-            if (range.Length == 0)
-            {
-                Invoke(new Action(() => T2_result.Text = "Не найдено"));
-            }
             for (int i = 0; i < range.Length; i++)
             {
                 output += $"{i} - {range[i]} {Environment.NewLine}";
             }
             Invoke(new Action(() => T2_result.Text = output));
+            if (range.Length == 0)
+            {
+                Invoke(new Action(() => T2_result.Text = "Не найдено"));
+            }
         }
         #endregion
 
@@ -411,15 +411,15 @@ namespace WinFormsApp
                 return;
             }
             string output = "";
-            if (range.Count == 0)
-            {
-                Invoke(new Action(() => T3_result.Text = "Не найдено"));
-            }
             for (int i = 0; i < range.Count; i++)
             {
                 output += $"{i} - {range[i]} {Environment.NewLine}";
             }
             Invoke(new Action(() => T3_result.Text = output));
+            if (range.Count == 0)
+            {
+                Invoke(new Action(() => T3_result.Text = "Не найдено"));
+            }
         }
         #endregion
 
