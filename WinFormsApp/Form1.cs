@@ -378,12 +378,13 @@ namespace WinFormsApp
                 T3_error.Text += $"Поле \"{T3_label_numreq.Text}\" должно быть заполнено {Environment.NewLine}";
                 return false;
             }
-            if (!Can_be_Parsed(T3_txtbox_numreq))
+            if (!Can_be_Parsed(T3_txtbox_numreq) &&
+                (T3_txtbox_numreq.Text.Length != 1 || T3_txtbox_numreq.Text.ToUpper()[0] < 'A' || T3_txtbox_numreq.Text.ToUpper()[0] > 'Z'))
             {
                 T3_error.Text += $"Значение в поле \"{T3_label_numreq.Text}\" не может быть переведено в целое число {Environment.NewLine}";
                 return false;
             }
-            if (long.Parse(T3_txtbox_numreq.Text) < 0)
+            if (Can_be_Parsed(T3_txtbox_numreq) && long.Parse(T3_txtbox_numreq.Text) < 0)
             {
                 T3_error.Text += $"Значение в поле \"{T3_label_numreq.Text}\" должно быть больше или равно 0 {Environment.NewLine}";
                 return false;
@@ -401,7 +402,8 @@ namespace WinFormsApp
             {
                 numbers[i] = long.Parse(temp[i]);
             }
-            long Csys = long.Parse(T3_txtbox_Csys.Text), numreq = long.Parse(T3_txtbox_numreq.Text);
+            long Csys = long.Parse(T3_txtbox_Csys.Text); 
+            long numreq = Can_be_Parsed(T3_txtbox_numreq) ? long.Parse(T3_txtbox_numreq.Text) : T3_txtbox_numreq.Text.ToUpper()[0] - 'A' + 10;
             var range = Solver.NumbersWithDigitNInBaseP(numbers, Csys, numreq);
             if (ct.IsCancellationRequested)
             {
