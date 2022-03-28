@@ -66,6 +66,7 @@ namespace UnitTests
             // assert
             Assert.AreEqual(expected0, nums[0]);
         }
+
         [TestMethod]
         public void CountDivisors_ReturnsNumbers()
         {
@@ -79,6 +80,7 @@ namespace UnitTests
             Assert.AreEqual(Solver.CountDivisors(1986, 10), 6);
             Assert.AreEqual(Solver.CountDivisors(2000, 30), 18);
         }
+
         [TestMethod]
         public void SumOfMinMaxDivisors_ReturnsNumbers()
         {
