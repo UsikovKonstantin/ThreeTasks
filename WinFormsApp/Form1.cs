@@ -66,9 +66,9 @@ namespace WinFormsApp
                 T1_error.Text += $"Значение в поле \"{T1_label_begin.Text}\" не может быть переведено в целое число {Environment.NewLine}";
                 return false;
             }
-            if (long.Parse(T1_txtbox_begin.Text) <= 2)
+            if (long.Parse(T1_txtbox_begin.Text) <= 1)
             {
-                T1_error.Text += $"Значение в поле \"{T1_label_begin.Text}\" должно быть больше 2 {Environment.NewLine}";
+                T1_error.Text += $"Значение в поле \"{T1_label_begin.Text}\" должно быть больше 1 {Environment.NewLine}";
                 return false;
             }
             T1_err_begin.Visible = false;
@@ -86,9 +86,9 @@ namespace WinFormsApp
                 T1_error.Text += $"Значение в поле \"{T1_label_end.Text}\" не может быть переведено в целое число {Environment.NewLine}";
                 return false;
             }
-            if (long.Parse(T1_txtbox_end.Text) <= 2)
+            if (long.Parse(T1_txtbox_end.Text) <= 1)
             {
-                T1_error.Text += $"Значение в поле \"{T1_label_end.Text}\" должно быть больше 2 {Environment.NewLine}";
+                T1_error.Text += $"Значение в поле \"{T1_label_end.Text}\" должно быть больше 1 {Environment.NewLine}";
                 return false;
             }
             T1_err_end.Visible = false;
@@ -196,9 +196,9 @@ namespace WinFormsApp
                 T2_error.Text += $"Значение в поле \"{T2_label_begin.Text}\" не может быть переведено в целое число {Environment.NewLine}";
                 return false;
             }
-            if (long.Parse(T2_txtbox_begin.Text) <= 2)
+            if (long.Parse(T2_txtbox_begin.Text) <= 1)
             {
-                T2_error.Text += $"Значение в поле \"{T2_label_begin.Text}\" должно быть больше 2 {Environment.NewLine}";
+                T2_error.Text += $"Значение в поле \"{T2_label_begin.Text}\" должно быть больше 1 {Environment.NewLine}";
                 return false;
             }
             T2_err_begin.Visible = false;
