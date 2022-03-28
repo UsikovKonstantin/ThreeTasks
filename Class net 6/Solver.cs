@@ -128,7 +128,7 @@
                     return i + (x / i);
                 }
             }
-            return 0;
+            return -1;
         }
 
         #endregion
