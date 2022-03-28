@@ -74,17 +74,7 @@
         public static long[] NumbersWithSumOfMinMaxDivisorsEqualsN(long start, long count, long n, object obj)
         {
             CancellationToken ct = (CancellationToken)obj;
-            long[] result = new long[0];
-
-            try
-            {
-                result = new long[count];
-            }
-            catch (Exception)
-            {
-                return NumbersWithSumOfMinMaxDivisorsEqualsN(start, (long)(count * 0.9), n, obj);
-            }
-            //long[] result = new long[count];
+            long[] result = new long[count];
             long ind = 0;
             try
             {
