@@ -66,5 +66,32 @@ namespace UnitTests
             // assert
             Assert.AreEqual(expected0, nums[0]);
         }
+        [TestMethod]
+        public void CountDivisors_ReturnsNumbers()
+        {
+            //Проверка на правильное получение количества делителей числа(не считая базовых)
+            Assert.AreEqual(Solver.CountDivisors(100, 10), 7);
+            Assert.AreEqual(Solver.CountDivisors(500, 10), 10);
+            Assert.AreEqual(Solver.CountDivisors(762, 10), 6);
+            Assert.AreEqual(Solver.CountDivisors(1000, 20), 14);
+            Assert.AreEqual(Solver.CountDivisors(1243, 10), 2);
+            Assert.AreEqual(Solver.CountDivisors(1500, 30), 22);
+            Assert.AreEqual(Solver.CountDivisors(1986, 10), 6);
+            Assert.AreEqual(Solver.CountDivisors(2000, 30), 18);
+        }
+        [TestMethod]
+        public void SumOfMinMaxDivisors_ReturnsNumbers()
+        {
+            //Проверка на правильное получение суммы максимального и минимального делителя(не считая базовых)
+            Assert.AreEqual(Solver.SumOfMinMaxDivisors(100), 52);
+            Assert.AreEqual(Solver.SumOfMinMaxDivisors(500), 252);
+            Assert.AreEqual(Solver.SumOfMinMaxDivisors(762), 383);
+            Assert.AreEqual(Solver.SumOfMinMaxDivisors(1000), 502);
+            Assert.AreEqual(Solver.SumOfMinMaxDivisors(1243), 124);
+            Assert.AreEqual(Solver.SumOfMinMaxDivisors(1500), 752);
+            Assert.AreEqual(Solver.SumOfMinMaxDivisors(1986), 995);
+            Assert.AreEqual(Solver.SumOfMinMaxDivisors(2000), 1002);
+        }
+
     }
 }
