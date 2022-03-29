@@ -323,7 +323,7 @@ namespace WinFormsApp
             }
             if (range.Length == 0)
             {
-                Invoke(new Action(() => T1_result.Text = "Не найдено"));
+                Invoke(new Action(() => T2_result.Text = "Не найдено"));
                 return;
             }
             string output;
@@ -524,7 +524,7 @@ namespace WinFormsApp
             }
             if (range.Count == 0)
             {
-                Invoke(new Action(() => T1_result.Text = "Не найдено"));
+                Invoke(new Action(() => T3_result.Text = "Не найдено"));
                 return;
             }
             string output;
