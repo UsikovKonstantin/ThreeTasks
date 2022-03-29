@@ -26,7 +26,7 @@ namespace WinFormsApp
         {
             T1_Change();
         }
-        
+
         void T1_Change()
         {
             for (int i = 0; i < threads.Count; i++)
@@ -50,7 +50,7 @@ namespace WinFormsApp
             if (begin_checks && end_checks && div_checks)
             {
                 var thr1 = new Thread(T1_Calculate);
-                threads.Add((thr1,cts));
+                threads.Add((thr1, cts));
                 thr1.Start(cts.Token);
             }
         }
@@ -123,22 +123,70 @@ namespace WinFormsApp
             {
                 (end, beg) = (beg, end);
             }
-            var range = Solver.NumbersWithNDivisors(beg, end, div,ct);
+            var range = Solver.NumbersWithNDivisors(beg, end, div, ct);
             if (ct.IsCancellationRequested)
             {
                 Invoke(new Action(() => T1_result.Text = "Вычисление отменено"));
                 return;
             }
-            string output = "";
-            for (int i = 0; i < range.Count; i++)
-            {
-                output += $"{i} - {range[i]} {Environment.NewLine}";
-            }
-            Invoke(new Action(() => T1_result.Text = output));
             if (range.Count == 0)
             {
                 Invoke(new Action(() => T1_result.Text = "Не найдено"));
+                return;
             }
+            string output;
+            long str_len_estimate = 0;
+
+            for (int i = 0; i < range.Count; i++)
+            {
+                str_len_estimate += range[i].ToString().Length;
+            }
+            str_len_estimate += range.Count * 5;
+            long indexes = range.Count, counter = 10, num_symb = 1;
+            while (indexes > 0)
+            {
+                if (indexes < counter)
+                {
+                    indexes = 0;
+                }
+                else
+                {
+                    indexes -= counter;
+                }
+                str_len_estimate += counter * num_symb;
+                num_symb++;
+                counter *= 10;
+            }
+            char[] chars = new char[str_len_estimate];
+            long index = 0,count = 0;
+            for (int i = 0; i < range.Count; i++)
+            {
+                string number = range[i].ToString(),cou = count.ToString();
+                for (int j = 0; j < cou.Length; j++)
+                {
+                    chars[index] = cou[j];
+                    index++;
+                }
+                chars[index] = ' ';
+                index++;
+                chars[index] = '-';
+                index++;
+                chars[index] = ' ';
+                index++;
+                for (int j = 0; j < number.Length; j++)
+                {
+                    chars[index] = number[j];
+                    index++;
+                }
+                chars[index] = '\r';
+                index++;
+                chars[index] = '\n';
+                index++;
+                count++;
+            }
+            output = new string(chars);
+            Invoke(new Action(() => T1_result.Text = output));
+
         }
         #endregion
 
@@ -258,23 +306,71 @@ namespace WinFormsApp
         {
             CancellationToken ct = (CancellationToken)obj;
             Invoke(new Action(() => T2_result.Text = "Происходит вычисление..."));
-            long beg = long.Parse(T2_txtbox_begin.Text), count = long.Parse(T2_txtbox_count.Text), sum = long.Parse(T2_txtbox_sum.Text);
-            var range = Solver.NumbersWithSumOfMinMaxDivisorsEqualsN(beg, count, sum, ct);
+            long beg = long.Parse(T2_txtbox_begin.Text), county = long.Parse(T2_txtbox_count.Text), sum = long.Parse(T2_txtbox_sum.Text);
+            var range = Solver.NumbersWithSumOfMinMaxDivisorsEqualsN(beg, county, sum, ct);
             if (ct.IsCancellationRequested)
             {
                 Invoke(new Action(() => T2_result.Text = "Вычисление отменено"));
                 return;
             }
-            string output = "";
-            for (int i = 0; i < range.Length; i++)
-            {
-                output += $"{i} - {range[i]} {Environment.NewLine}";
-            }
-            Invoke(new Action(() => T2_result.Text = output));
             if (range.Length == 0)
             {
-                Invoke(new Action(() => T2_result.Text = "Не найдено"));
+                Invoke(new Action(() => T1_result.Text = "Не найдено"));
+                return;
             }
+            string output;
+            long str_len_estimate = 0;
+
+            for (int i = 0; i < range.Length; i++)
+            {
+                str_len_estimate += range[i].ToString().Length;
+            }
+            str_len_estimate += range.Length * 5;
+            long indexes = range.Length, counter = 10, num_symb = 1;
+            while (indexes > 0)
+            {
+                if (indexes < counter)
+                {
+                    indexes = 0;
+                }
+                else
+                {
+                    indexes -= counter;
+                }
+                str_len_estimate += counter * num_symb;
+                num_symb++;
+                counter *= 10;
+            }
+            char[] chars = new char[str_len_estimate];
+            long index = 0, count = 0;
+            for (int i = 0; i < range.Length; i++)
+            {
+                string number = range[i].ToString(), cou = count.ToString();
+                for (int j = 0; j < cou.Length; j++)
+                {
+                    chars[index] = cou[j];
+                    index++;
+                }
+                chars[index] = ' ';
+                index++;
+                chars[index] = '-';
+                index++;
+                chars[index] = ' ';
+                index++;
+                for (int j = 0; j < number.Length; j++)
+                {
+                    chars[index] = number[j];
+                    index++;
+                }
+                chars[index] = '\r';
+                index++;
+                chars[index] = '\n';
+                index++;
+                count++;
+            }
+            output = new string(chars);
+            Invoke(new Action(() => T2_result.Text = output));
+            
         }
         #endregion
 
@@ -328,7 +424,7 @@ namespace WinFormsApp
                 return false;
             }
             string[] temp = T3_txtbox_numbers.Text.Split(',');
-            for (long i = 0;i<temp.Length;i++)
+            for (long i = 0; i < temp.Length; i++)
             {
                 try
                 {
@@ -402,7 +498,7 @@ namespace WinFormsApp
             {
                 numbers[i] = long.Parse(temp[i]);
             }
-            long Csys = long.Parse(T3_txtbox_Csys.Text); 
+            long Csys = long.Parse(T3_txtbox_Csys.Text);
             long numreq = Can_be_Parsed(T3_txtbox_numreq) ? long.Parse(T3_txtbox_numreq.Text) : T3_txtbox_numreq.Text.ToUpper()[0] - 'A' + 10;
             var range = Solver.NumbersWithDigitNInBaseP(numbers, Csys, numreq);
             if (ct.IsCancellationRequested)
@@ -410,16 +506,64 @@ namespace WinFormsApp
                 Invoke(new Action(() => T3_result.Text = "Вычисление отменено"));
                 return;
             }
-            string output = "";
-            for (int i = 0; i < range.Count; i++)
-            {
-                output += $"{i} - {range[i]} {Environment.NewLine}";
-            }
-            Invoke(new Action(() => T3_result.Text = output));
             if (range.Count == 0)
             {
-                Invoke(new Action(() => T3_result.Text = "Не найдено"));
+                Invoke(new Action(() => T1_result.Text = "Не найдено"));
+                return;
             }
+            string output;
+            long str_len_estimate = 0;
+
+            for (int i = 0; i < range.Count; i++)
+            {
+                str_len_estimate += range[i].ToString().Length;
+            }
+            str_len_estimate += range.Count * 5;
+            long indexes = range.Count, counter = 10, num_symb = 1;
+            while (indexes > 0)
+            {
+                if (indexes < counter)
+                {
+                    indexes = 0;
+                }
+                else
+                {
+                    indexes -= counter;
+                }
+                str_len_estimate += counter * num_symb;
+                num_symb++;
+                counter *= 10;
+            }
+            char[] chars = new char[str_len_estimate];
+            long index = 0, count = 0;
+            for (int i = 0; i < range.Count; i++)
+            {
+                string number = range[i].ToString(), cou = count.ToString();
+                for (int j = 0; j < cou.Length; j++)
+                {
+                    chars[index] = cou[j];
+                    index++;
+                }
+                chars[index] = ' ';
+                index++;
+                chars[index] = '-';
+                index++;
+                chars[index] = ' ';
+                index++;
+                for (int j = 0; j < number.Length; j++)
+                {
+                    chars[index] = number[j];
+                    index++;
+                }
+                chars[index] = '\r';
+                index++;
+                chars[index] = '\n';
+                index++;
+                count++;
+            }
+            output = new string(chars);
+            Invoke(new Action(() => T3_result.Text = output));
+            
         }
         #endregion
 
