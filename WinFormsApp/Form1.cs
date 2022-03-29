@@ -156,13 +156,13 @@ namespace WinFormsApp
                 }
                 str_len_estimate += counter * num_symb;
                 num_symb++;
-                counter = counter*10 - counter;
+                counter = counter * 10 - counter;
             }
             char[] chars = new char[str_len_estimate];
-            long index = 0,count = 0;
+            long index = 0, count = 0;
             for (int i = 0; i < range.Count; i++)
             {
-                string number = range[i].ToString(),cou = count.ToString();
+                string number = range[i].ToString(), cou = count.ToString();
                 for (int j = 0; j < cou.Length; j++)
                 {
                     chars[index] = cou[j];
@@ -372,7 +372,7 @@ namespace WinFormsApp
             }
             output = new string(chars);
             Invoke(new Action(() => T2_result.Text = output));
-            
+
         }
         #endregion
 
@@ -566,7 +566,7 @@ namespace WinFormsApp
             }
             output = new string(chars);
             Invoke(new Action(() => T3_result.Text = output));
-            
+
         }
         #endregion
 
