@@ -156,7 +156,14 @@ namespace WinFormsApp
                 }
                 str_len_estimate += counter * num_symb;
                 num_symb++;
-                counter = counter * 10 - counter;
+                if (counter == 10)
+                {
+                    counter = 90;
+                }
+                else
+                {
+                    counter *= 10;
+                }
             }
             char[] chars = new char[str_len_estimate];
             long index = 0, count = 0;
@@ -341,7 +348,14 @@ namespace WinFormsApp
                 }
                 str_len_estimate += counter * num_symb;
                 num_symb++;
-                counter = counter * 10 - counter;
+                if (counter == 10)
+                {
+                    counter = 90;
+                }
+                else
+                {
+                    counter *= 10;
+                }
             }
             char[] chars = new char[str_len_estimate];
             long index = 0, count = 0;
@@ -535,7 +549,14 @@ namespace WinFormsApp
                 }
                 str_len_estimate += counter * num_symb;
                 num_symb++;
-                counter = counter * 10 - counter;
+                if (counter == 10)
+                {
+                    counter = 90;
+                }
+                else
+                {
+                    counter *= 10;
+                }
             }
             char[] chars = new char[str_len_estimate];
             long index = 0, count = 0;
